@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Point = void 0;
 var Point = /** @class */ (function () {
     function Point(_x, _y) {
