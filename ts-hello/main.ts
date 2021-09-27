@@ -98,22 +98,54 @@ let drawPoint3 = (point: PointInterface) => {
 // Cohesion should be preserved by keeping
 // interface and related functions contained to
 // the same class
-class Point {
-  x: number;
-  y: number;
-  // in classes we can define the implementation
-  draw() {
-    console.log('X: ' + this.x + ', Y: ' + this.y);
-  }
+// class Point {
+//   x: number;
+//   y: number;
+//   // in classes we can define the implementation
+//   draw() {
+//     console.log('X: ' + this.x + ', Y: ' + this.y);
+//   }
 
-  getDistance(another: Point) {
-    // ...
-  }
-}
+//   getDistance(another: Point) {
+//     // ...
+//   }
+// }
 
 // Objects:
 // Instance of classes
-let point = new Point();
-point.x = 1;
-point.y = 2;
+// let point = new Point();
+// point.x = 1;
+// point.y = 2;
+// point.draw();
+
+// Constructors:
+// Better way to create a new object and establish it's properties
+class Point {
+  // don't need this because of access modifier in constructor
+  //private x: number;
+  //private y: number;
+
+  // ? makes a parameter optional
+  // Can't have multiple constructors in typescript
+  constructor(private x?: number, private y?: number) {
+    // don't need this either because of access modifier
+    // this.x = x;
+    // this.y = y;
+  }
+
+  draw() {
+    console.log('X: ' + this.x + ', Y: ' + this.y);
+  }
+}
+
+let point = new Point(1, 2);
 point.draw();
+
+// can do this because x and y are optional parameters
+let emptyPoint = new Point();
+
+// Access Modifiers:
+// public - all are public by default
+// private - only accessable within a class
+// point.x = 1 won't work
+// protected
