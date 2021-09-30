@@ -3,21 +3,10 @@ import { CoursesService } from './courses.service';
 
 @Component({
   selector: 'courses',
-  template: `
-    <h2>{{ title }}</h2>
-    <ul>
-      <li *ngFor="let course of courses">
-        {{ course }}
-      </li>
-      <ul></ul>
-    </ul>
-  `,
+  template: ` {{ text | summary: 10 }} `,
 })
 export class CoursesComponent {
-  title = 'List of courses';
-  courses;
-
-  constructor(service: CoursesService) {
-    this.courses = service.getCourses();
-  }
+  text = `
+    this is intentionally a lot of text: asdfasdfsadfiosdadnvdvdsoivsdfhpasfdasdfhadpfaspfjasdiofahfqpiwqe9hqwfhdpifha8qwufhqp9hrwfh9ddiasf80qwefhd9cxf8efq89ewfhqwpuidhp9h89qe9pehphdihfijdfhasfhqufhqufhq9hfdjfhp9cuhahqp9ehfiudhfpqfhphkahpuefhqpu
+  `;
 }
