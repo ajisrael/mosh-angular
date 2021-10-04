@@ -7,14 +7,9 @@ import { FavoriteChangedEventArgs } from './favorite/favorite.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Angular app';
-
-  post = {
-    title: 'title',
-    isFavorite: true,
+  tweet = {
+    body: '...',
+    likesCount: 10,
+    isLiked: true,
   };
-
-  onFavoriteChanged(eventArgs: FavoriteChangedEventArgs) {
-    console.log('Favorite Changed: ', eventArgs);
-  }
 }
