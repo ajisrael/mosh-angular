@@ -11,6 +11,7 @@ import { SummaryPipe } from './summary.pipe';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { CardComponent } from './card/card.component';
 import { LikeComponent } from './like/like.component';
+import { InputFormatDirective } from './input-format.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LikeComponent } from './like/like.component';
     FavoriteComponent,
     CardComponent,
     LikeComponent,
+    InputFormatDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [CoursesService],
