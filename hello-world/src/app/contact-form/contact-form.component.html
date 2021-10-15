@@ -1,6 +1,6 @@
 <form #f="ngForm" (ngSubmit)="submit(f)">
   <div ngModelGroup="contact" #contact="ngModelGroup">
-    <div *ngIf="!contact.valid && contact.touched">...ngGroup invalid example</div>
+    <!-- <div *ngIf="!contact.valid && contact.touched">...ngGroup invalid example</div> -->
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input
@@ -44,5 +44,5 @@
       class="form-control"
     ></textarea>
   </div>
-  <button class="btn btn-primary">Submit</button>
+  <button class="btn btn-primary mt-1" [disabled]="!f.valid">Submit</button>
 </form>
