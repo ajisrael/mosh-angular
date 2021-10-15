@@ -14,7 +14,7 @@ import {
   styleUrls: ['./new-course-form.component.css'],
 })
 export class NewCourseFormComponent {
-  form;
+  form: FormGroup;
 
   constructor(fb: FormBuilder) {
     this.form = fb.group({
