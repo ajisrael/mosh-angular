@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppError } from '../common/app-error';
+import { AppErrorHandler } from '../common/app-error-handler';
 import { BadInput } from '../common/bad-input';
 import { NotFoundError } from '../common/not-found-error';
 import { PostService } from '../services/post.service';
@@ -15,15 +16,9 @@ export class PostsComponent implements OnInit {
   constructor(private service: PostService) {}
 
   ngOnInit() {
-    this.service.getPosts().subscribe(
-      (response) => {
-        this.posts = response as any;
-      },
-      (error) => {
-        alert('An unexpected error occurred.');
-        console.log(error);
-      }
-    );
+    this.service.getPosts().subscribe((response) => {
+      this.posts = response as any;
+    });
   }
 
   createPost(input: HTMLInputElement) {
@@ -39,24 +34,15 @@ export class PostsComponent implements OnInit {
       (error: AppError) => {
         if (error instanceof BadInput) {
           // this.form.setErrors(error.originalError)
-        } else {
-          alert('An unexpected error occurred.');
-          console.log(error);
-        }
+        } else throw error;
       }
     );
   }
 
   updatePost(post: any) {
-    this.service.updatePost(post).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        alert('An unexpected error occurred.');
-        console.log(error);
-      }
-    );
+    this.service.updatePost(post).subscribe((response) => {
+      console.log(response);
+    });
   }
 
   deletePost(post: any) {
@@ -68,10 +54,7 @@ export class PostsComponent implements OnInit {
       (error: AppError) => {
         if (error instanceof NotFoundError) {
           alert('This post has already been deleted.');
-        } else {
-          alert('An unexpected error occurred.');
-          console.log(error);
-        }
+        } else throw error;
       }
     );
   }
