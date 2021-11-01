@@ -37,7 +37,8 @@ export class PostService {
   }
 
   deletePost(id: number) {
-    return this.http.delete(this.url + '/' + id).pipe(
+    let badUrl: string = id > 300 ? 'failure' : '';
+    return this.http.delete(this.url + badUrl + '/' + id).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
           return throwError(new NotFoundError());
