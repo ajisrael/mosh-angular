@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
   private url: string = 'http://jsonplaceholder.typicode.com/posts';
+  private MAX_POST_COUNT: number = 100;
 
   constructor(private http: HttpClient) {}
 
