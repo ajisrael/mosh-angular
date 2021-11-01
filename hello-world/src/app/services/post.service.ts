@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
   private url: string = 'http://jsonplaceholder.typicode.com/posts';
-  private MAX_POST_COUNT: number = 100;
 
   constructor(private http: HttpClient) {}
 
