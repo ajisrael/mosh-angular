@@ -1,0 +1,14 @@
+<div *ngFor="let follower of followers" class="container mt-3">
+  <div class="d-flex border p-3">
+    <img
+      src="{{ follower.avatar_url }}"
+      alt="John Doe"
+      class="flex-shrink-0 me-3 mt-3 rounded-circle"
+      style="width: 60px; height: 60px"
+    />
+    <div>
+      <h4>{{ follower.login }}</h4>
+      <a href="{{ follower.html_url }}">{{ follower.html_url }}</a>
+    </div>
+  </div>
+</div>
