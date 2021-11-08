@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { AppError } from '../common/app-error';
 import { BadInput } from '../common/bad-input';
 import { NotFoundError } from '../common/not-found-error';
@@ -13,9 +13,13 @@ export class DataService {
   constructor(private url: String, private http: HttpClient) {}
 
   getAll() {
-    return this.http
-      .get(this.url.toString())
-      .pipe(catchError(this.handleError));
+    // example of map():
+    // needed to change response to full http response instead of body
+    // so that map() had purpose and wasn't just map(response=>response)
+    return this.http.get(this.url.toString(),{observe:'response'}).pipe(
+      map(response=>response.body as object[]),
+      catchError(this.handleError)
+    );
   }
 
   create(resource: any) {
