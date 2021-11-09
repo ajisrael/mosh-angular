@@ -2,7 +2,11 @@
   <div class="container-fluid">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/followers"
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          routerLink="/followers"
+          [queryParams]="{ page: 1, order: 'newest' }"
           >Followers</a
         >
       </li>
