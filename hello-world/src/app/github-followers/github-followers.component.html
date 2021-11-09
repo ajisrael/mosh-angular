@@ -8,7 +8,9 @@
     />
     <div>
       <h4>
-        <a [routerLink]="['/followers', follower.id]">{{ follower.login }}</a>
+        <a [routerLink]="['/followers', follower.id, follower.login]">{{
+          follower.login
+        }}</a>
       </h4>
       <a href="{{ follower.html_url }}">{{ follower.html_url }}</a>
     </div>
