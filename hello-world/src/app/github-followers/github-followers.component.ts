@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GithubFollowersService } from '../github-followers.service';
-import { Observable, forkJoin } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'github-followers',
@@ -17,17 +18,22 @@ export class GithubFollowersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    forkJoin([this.route.paramMap, this.route.queryParamMap]).subscribe(
-      (combined) => {
-        let id = combined[0].get('id');
-        let page = combined[1].get('page');
+    combineLatest([this.route.paramMap, this.route.queryParamMap])
+      .pipe(
+        switchMap((combined) => {
+          //Required parameters
+          let id = combined[0].get('id');
+          let location = combined[0].get('location');
 
-        // example of how parameters would be used
-        // this.service.getAll({ id: id, page: page });
-      }
-    );
-    this.service
-      .getAll()
+          //Optional parameters
+          let page = combined[1].get('page');
+          let newest = combined[1].get('newest');
+          let cheapest = combined[1].get('cheapest');
+
+          //Followers data
+          return this.service.getAll();
+        })
+      )
       .subscribe((followers) => (this.followers = followers));
   }
 }
